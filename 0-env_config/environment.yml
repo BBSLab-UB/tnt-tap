@@ -1,0 +1,18 @@
+name: tnt-tap
+channels:
+  - defaults
+dependencies:
+  - anaconda::python=3.11
+  - anaconda::pip
+  - pytorch::pytorch
+  - pytorch::torchvision
+  - pytorch::torchaudio
+  - pytorch::cpuonly
+  - conda-forge::ffmpeg
+  - conda-forge::ffmpeg-python
+  - anaconda::requests
+  - anaconda::pandas
+  - conda-forge::python-docx
+  - pip:
+    - openai-whisper
+    - audiostretchy
