@@ -23,21 +23,23 @@ print("Whisper {} model loading completed.".format(model_name))
 model_time = datetime.now()
 print('Model loading lasted {}'.format(model_time - start_time))
 
-input_ok = False
-
 # INPUT PATH
-while input_ok == False:
-    input_path = os.path.normpath(input(r"Please, enter the audio or folder of audios to transcribe: ").replace("'","").replace(" ",""))
-    if os.path.isdir(input_path):
-        list_of_files = [file for file in os.listdir(input_path) if (os.path.isfile(os.path.join(input_path, file)) and (file[-4:] == '.WMA' or file[-4:] == '.wav'))]
-        input_dir = input_path
-        input_ok = True
-    elif os.path.isfile(input_path):
-        list_of_files = [os.path.basename(input_path),]
-        input_dir = os.path.dirname(input_path)
-        input_ok = True
-    else:
-        print("The string entered is not a valid file nor a folder!")
+input_dir = os.path.normpath(input(r"Please, enter the folder path where the audios are stored: ").replace("'","").replace(" ",""))
+list_path = os.path.normpath(input(r"Please, enter the list of audios file path: ").replace("'","").replace(" ",""))
+
+#selecting files from list file
+def get_files_in_list(list_txt):
+    with open(list_txt) as f:
+        file_list = []
+        for file_path in f:
+            file_path = file_path.rstrip()
+            file_path = file_path.replace('"','').replace("'","")
+            if file_path[-1] == "/":
+                file_path = file_path[:-1]
+            dicom_id = os.path.basename(file_path)
+            file_list.append(dicom_id)
+    return file_list
+list_of_files = get_files_in_list(list_path)
 
 if len(list_of_files) == 0:
     raise Exception('No .WMA or .wav audio samples were found.')
