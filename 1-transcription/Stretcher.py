@@ -9,7 +9,7 @@ from audiostretchy.stretch import stretch_audio
 
 # Input path and ratio
 wma_path = os.path.normpath(input("Please, enter the audio to stretch path: ")).replace("'","").replace(" ","") # remove '' from string
-stretch_ratio = float(input("Please, enter the stretching ratio (>1 == longer audio, <1 == shorter audio): "))
+stretch_ratio = float(input("Please, enter the stretching ratio (>1 == longer/slower audio, <1 == shorter/faster audio): "))
 
 # Define wav and output path
 wav_filename = os.path.basename(wma_path).split('.')[0] + '.wav'
