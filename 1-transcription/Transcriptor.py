@@ -24,16 +24,16 @@ model_time = datetime.now()
 print('Model loading lasted {}'.format(model_time - start_time))
 
 # INPUT PATH
-input_dir = os.path.normpath(input(r"Please, enter the folder path where the audios are stored: ").replace("'","").replace(" ",""))
-list_path = os.path.normpath(input(r"Please, enter the list of audios file path: ").replace("'","").replace(" ",""))
+input_dir = os.path.normpath(input(r"Please, enter the folder path where the audios are stored: ").strip(" '")
+list_path = os.path.normpath(input(r"Please, enter the list of audios file path: ").strip(" '")
 
 #selecting files from list file
 def get_files_in_list(list_txt):
     with open(list_txt) as f:
         file_list = []
         for file_path in f:
-            file_path = file_path.rstrip()
-            file_path = file_path.replace('"','').replace("'","")
+            file_path = file_path.strip(" '")
+            file_path = file_path.strip('"')
             if file_path[-1] == "/":
                 file_path = file_path[:-1]
             dicom_id = os.path.basename(file_path)
