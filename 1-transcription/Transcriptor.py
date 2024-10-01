@@ -24,8 +24,8 @@ model_time = datetime.now()
 print('Model loading lasted {}'.format(model_time - start_time))
 
 # INPUT PATH
-input_dir = os.path.normpath(input(r"Please, enter the folder path where the audios are stored: ").strip(" '")
-list_path = os.path.normpath(input(r"Please, enter the list of audios file path: ").strip(" '")
+input_dir = os.path.normpath(input(r"Please, enter the folder path where the audios are stored: ").strip(" '").replace('"','')
+list_path = os.path.normpath(input(r"Please, enter the list of audios file path: ").strip(" '").replace('"','')
 
 #selecting files from list file
 def get_files_in_list(list_txt):
@@ -42,7 +42,7 @@ def get_files_in_list(list_txt):
 list_of_files = get_files_in_list(list_path)
 
 if len(list_of_files) == 0:
-    raise Exception('No .WMA or .wav audio samples were found.')
+    raise Exception('No audio samples were found.')
 
 ## LANGUAGE SETTING
 
